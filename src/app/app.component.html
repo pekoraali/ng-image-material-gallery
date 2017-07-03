@@ -1,0 +1,78 @@
+<md-toolbar color="primary">
+  <span>GameViewer</span>
+  <span class="spacer"></span>
+  <button md-icon-button
+          [mdMenuTriggerFor]="menu">
+    <md-icon>
+      more_vert
+    </md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <button md-menu-item>
+      <md-icon>
+        fingerprint
+      </md-icon>
+      <span>Login</span>
+    </button>
+    <button md-menu-item
+            disabled>
+      <md-icon>
+        announcement
+      </md-icon>
+      <span>Issues</span>
+    </button>
+    <button md-menu-item>
+      <md-icon>
+        notifications_off
+      </md-icon>
+      <span>Disable alerts</span>
+    </button>
+  </md-menu>
+</md-toolbar>
+<md-tab-group>
+  <md-tab label="Gallery">
+    <md-card *ngFor="let spaceScreen of spaceScreens; let i = index">
+      
+      <img md-card-image
+           src="{{ spaceScreen.img }}">
+      <md-card-content>
+        {{ spaceScreen.description }}
+      </md-card-content>
+      <md-card-actions align="start">
+        <button md-button
+                (click)="likeMe(i)">
+          <i class="material-icons md-18" [class.red-color]="spaceScreen.liked == '1'">favorite</i> Loice 
+        </button>
+        <button md-button
+                (click)="deleteMe(i)">
+          <i class="material-icons md-18">delete</i> Delete me
+        </button> 
+      </md-card-actions>
+     
+    </md-card>
+  </md-tab>
+  <md-tab label="Settings">
+    <div id="page-padding">
+    <h1>Settings</h1>
+    <p>Here you can control the various settings associated with your app. There's no need to hit a save button, as the values are updated automatically.</p>
+    <label>Number of Thumbnails</label>
+    <md-slider [(ngModel)]="modelName"
+               showTicks="true"
+               min="1"
+               max="100"
+               step="1"
+               thumbLabel="true" 
+               value="18">
+      
+    </md-slider>
+    
+    <md-slide-toggle [(ngModel)]="modelName"
+                     (change)="onChange($event)"
+                     color="primary">
+      SomeSettings
+    </md-slide-toggle>
+    </div>
+  </md-tab>
+</md-tab-group>
+
+                                                
